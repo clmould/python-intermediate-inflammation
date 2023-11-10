@@ -7,6 +7,7 @@ import pytest
 from inflammation.models import daily_mean
 from inflammation.models import daily_max
 from inflammation.models import daily_min
+from inflammation.models import load_json
 
 
 @pytest.mark.parametrize(
@@ -53,15 +54,12 @@ def test_daily_min(test, expected):
 
 def test_daily_min_string():
     """Test for TypeError when passing strings"""
-    from inflammation.models import daily_min
 
     with pytest.raises(TypeError):
         error_expected = daily_min([["Hello", "there"], ["General", "Kenobi"]])
 
 
 def test_load_from_json(tmpdir):
-    from inflammation.models import load_json
-
     example_path = os.path.join(tmpdir, "example.json")
     with open(example_path, "w") as temp_json_file:
         temp_json_file.write('[{"observations":[1, 2, 3]},{"observations":[4, 5, 6]}]')
