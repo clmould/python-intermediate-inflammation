@@ -75,7 +75,7 @@ def s_dev(data):
     mean_data = daily_mean(data)
     devs = []
     for entry in data:
-        devs.append((entry - mmm) * (entry - mmm))
+        devs.append((entry - mean_data) * (entry - mean_data))
 
     s_dev2 = sum(devs) / len(data)
     return {'standard deviation': s_dev2}
