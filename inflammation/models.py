@@ -70,6 +70,16 @@ def daily_min(data):
     return np.min(data, axis=0)
 
 
+def s_dev(data):
+    """Computes and returns standard deviation for data."""
+    mean_data = daily_mean(data)
+    devs = []
+    for entry in data:
+        devs.append((entry - mean_data) * (entry - mean_data))
+
+    s_dev2 = sum(devs) / len(data)
+    return {'standard deviation': s_dev2}
+
 def patient_normalise(data):
     """
     Normalise patient data from a 2D inflammation data array.
